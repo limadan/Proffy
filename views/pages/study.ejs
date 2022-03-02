@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang = "pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proffy | Sua plataforma de estudos online</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/partials/header.css"> <!--refatorando o código-->
+    <link rel="stylesheet" href="/styles/partials/page-study.css">
+<!--há 2 links de stylesheet, elas podem se "comunicar entre si caso estejam no mesmo documento html -->
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;
+700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"> <!--BUSCAR FONTES NO GOOGLE-->
+    <link rel="stylesheet" href="/styles/partials/forms.css">
+</head>
+<body id="page-study">
+    <div id = "container">
+        <header class="page-header">
+            <div class="top-bar-container">
+                <a href="/">
+                    <img src="images/images/icons/back.svg" alt="Voltar">
+                </a><!--Quando usamos "/", queremos voltar para a página inicial-->
+                <img src="images/images/logo.svg" alt="Proffy">
+            </div>
+
+            <div class="header-content"><!--A tag "form" cria um formulário automaticamente. O atributo "action" informa o local onde as informações serão enviadas.-->
+                <strong>Estes são os Proffys disponíveis</strong>
+                <form id="search-teachers" action="study" method="POST"> <!--A tag "form" pega todas as informações dentro dela e manda para o backk-end-->
+                    <div class="select-block">
+                        <label for="subject">Matéria</label> <!--O atributo "for" na tag label é utilizado para procurar o campo no qual o label pertence. O valor da tag precisa encontrar outra que tenha o atributo "name" igual a esse valor.-->
+                        <select name="subject" id="subject"> <!--A tag "select" cria um "input de listas".-->
+                        <!--OBS: O atributo "name" é usado para identificar informações no back-end. Deve ser único, assim como o "id".-->
+                            <option value="" disabled="">Selecione uma opção</option> <!--Essa tag foi criada para informar o usuário a escolher uma opção. É importante que esteja desabilitada, assim o usuário não pode selecioná-la para não atrapalhar no back-end-->
+                            <option value="1">Artes</option> <!--A tag "opition" é usada para criar cada uma das opcões dentro do select. Nesse caso, cada uma delas precisa da tag "value" com um valor definido, pois será o valor que a tag "form" irá atribuir ao nome do select e enviar para o back-end.-->
+                            <option value="2">Biologia</option>
+                            <option value="3">Ciências</option>
+                            <option value="4">Educação física</option>
+                            <option value="5">Física</option>
+                            <option value="6">Geografia</option>
+                            <option value="7">História</option>
+                            <option value="8">Matemática</option>
+                            <option value="9">Português</option>
+                            <option value="10">Química</option>
+                        </select>
+                    </div>
+                    <div class="select-block">
+                        <label for="weekday">Dia da semana</label>
+                        <select name="weekday" id="weekday">
+                            <option value="" disabled="" hidden="">Selecione uma opção</option>
+                            <option value="0">Domingo</option>
+                            <option value="1">Segunda-feira</option>
+                            <option value="2">Terça-feira</option>
+                            <option value="3">Quarta-feira</option>
+                            <option value="4">Quinta-feira</option>
+                            <option value="5">Sexta-feira</option>
+                            <option value="6">Sábado</option>
+                        </select>
+                    </div>
+                    <div class="input-block">
+                        <label for="time">Hora</label>
+                        <input name="time" id="time" type="time" >
+                    </div> <!--"time" é um outro tipo de input para informar hora.-->
+                    <button type="submit">Filtrar</button> <!--O atributo type="submit" serve para informar para a tag "form" que, ao clicar no botão, todos os dados serão submetidos ao back-end-->
+                </form>
+            </div>
+        </header> <!--Tag usada para criar uma barra inicial no html-->
+        <main>
+            <%proffys.forEach((proffy)=>{%>
+                <article class="teacher-item"> <!--Tag usada quando um conteúdo vai se repetir várias vezes-->
+                    <header>
+                        <img src=<%= proffy.avatar%> alt=<%=proffy.name%>>
+                        <div>
+                            <strong><%=proffy.name%></strong>
+                            <span><%= proffy.subject%></span>
+                        </div>
+                    </header>
+
+                    <p><%= proffy.bio%></p>
+
+                    <footer><!--Cria um rodapé-->
+                        <p>Preço/hora<strong><%= proffy.cost%></strong></p>
+                        <button type="button">
+                            <img src="/images/images/icons/whatsapp.svg">
+                            Entrar em contato: <br>
+                            <strong><%= proffy.whatsapp%></strong>
+                        </button>
+                    </footer>
+                </article>
+            <%});%>
+        </main> <!--Tag usada para identificar o conteúdo principal do página-->
+    </div>
+</body>
+</html>

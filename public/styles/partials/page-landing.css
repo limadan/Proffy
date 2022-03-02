@@ -1,0 +1,126 @@
+@media (max-width: 699px) {
+    :root{
+        font-size: 40%;
+    }
+}
+
+#page-landing{
+    background: var(--color-primary);
+}
+
+#page-landing #container {
+    color: var(--color-text-in-primary);
+}
+
+.logo_image img /*você pode selecionar elementos que estão dentro de outros colocando a classe do pai e depois o elemento filho, sem separá-los por vírgula*/ {
+    height: 10rem;
+}
+
+.logo_image{
+    text-align: center;
+    margin-bottom:3.2rem;
+}
+
+.hero-image{
+    width: 100%;
+} /*hero-image está denro de container, que tem uma largura de 90vw. Como a largura de hero-image entá em 100%, vai aumentar com o div na medida que viewport aumentar.*/
+
+.logo-image h2{
+    font-weight: 500;
+    font-size: 3.6rem;
+    line-height: 4.6rem; /*altura da linha do texto*/
+    margin-top: 0.8rem;
+}
+
+.buttons-container{
+    display: flex;
+    justify-content: center;
+    margin: 3.2rem 0;
+}
+
+.buttons-container a {
+    width: 30rem;
+    height: 10.4rem;
+    border-radius: 0.8rem;
+    background-color: red;
+    margin-right: 1.6rem;
+    font: 700 2.4rem Archivo;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /*Os elementos vêm com uma decoração de texto padrão. No caso da tag <a>, o text-decoration é "underline" (por isso aquele sublinhado). Para revomer o sublinhado, basta configurar o text-decoration para "none*/
+    color: var(--color-button-text);
+    transition: background 0.2s; /*Nesse momento, a propriedade "transition" serve para atrasar o estado de hover. É necessário por o elemento que fará transição e quanto tempo vai levar*/ 
+}
+
+.buttons-container a img{
+    width: 4rem;
+    margin-right: 2.4rem;
+}
+.buttons-container a.study{
+    background: var(--color-primary-lighter);
+}
+
+.buttons-container a.study:hover/*quando se digita ":hover" depois de um elemento, significa que as seguintes propriedades só serão aplicadas quando o mouse estiver no seu estado de "hover", isto é, com a seta em cima do elemento*/ {
+    background: var(--color-primary-light);
+}
+.buttons-container a.give-classes{
+    background: var(--color-secondary);
+    margin-right: 0; /* remover a margem que foi deixada mais em cima no código*/
+}
+
+.buttons-container a.give-classes:hover{
+    background: var(--color-secondary-dark);
+}
+
+.total-conections {
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.total-connections img{
+    margin-right: 0.8rem;
+}
+
+@media (min-width:1100px)/* A regra "@media" é uma regra que só será aplicada quando certo padrão for seguido. Nesse caso, se a altura mínima do dispositivo for de 1100px, ele vai aplicar tudo que está dentro das chaves*/{
+    #page-landing #container{
+        max-width: 1100px;
+        display: grid; /*divide a sua div em colunas e linhas*/
+        grid-template-columns: 2fr 1fr 2fr; /*aqui são definidas as colunas da grid, cada uma ocupando 33% do documento. A unidade "fr" significa que os elementos ocuparão a mesma fração, mas também pode-se usar px, porcntagem, ect*/
+        grid-template-rows: 350px 1fr; /*definindo as colunas da grid*/
+
+        /*OBS: O grid vai se ajustando sozinho na medida que os elementos aparecem. Isto é, o primeiro elemento e joga na primeira coluna, o segundo na segunda e por aí vai. É preciso configurar*/
+
+        grid-template-areas: 
+        "proffy image image"
+        "button button texting"; /*Aqui estamos definindo as áreas da grid que vamos usar. Nesse caso, temos 6 delas.*/
+        gap: 60px; /*A propriedade "gap" é usada para criar uma lacuna entre as áreas da grid, a fim de separá-las*/
+    }
+
+    .logo_image{
+        grid-area: proffy; /*aqui estamos definindo qual área da grid o documento ocupará*/
+        text-align: initial;/*os elementos da grid não estão configurados to jeito certo, geralmente estão centralizados. É necessário configurar eles da maneira que queremos*/
+        align-self: center; /*é necessário usar a propriedade "align-self" para que os elementos não desreipeitem a área da grid. Ela fixa os elementos*/
+        margin-bottom: 0;
+    }
+    .logo_image img{
+        height: 100%
+    }
+
+    .hero-image{
+        grid-area: image; /*Elementos podem ocupar mais de uma área na grid. Na grid, duas áreas se chamam image.*/
+        height: 350px;
+    }
+
+    .buttons-container{
+        grid-area: button;
+        justify-content: flex-start; /*vai alinhar da esquerda para a direita*/
+        margin: 0;
+    }
+    .total-conections{
+        grid-area: texting;
+        justify-self: end; /*jogando o item para o final*/
+    }
+}

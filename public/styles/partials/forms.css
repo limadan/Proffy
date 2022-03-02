@@ -1,0 +1,37 @@
+.select-block label, .input-block label, .textarea-block textarea{
+    font-size: 1.4rem;
+    color: var(--color-text-complement);
+}
+
+
+.input-block input, .select-block select, .textarea-block textarea{
+    width: 100%;
+    height: 5.6rem;
+    margin-top: 0.8rem;
+    border-radius: 0.8rem;
+    background: var(--color-input-background);
+    border: 1px solid var(--color-line-in-white);
+    outline: 0;
+    padding: 0 1.6rem;
+    font: 1.6rem Archivo;
+}
+
+.textarea-block textarea{
+    padding: 1.2rem 1.6rem;
+    height: 16rem;
+    resize: vertical; /*O textarea, por padrão, vem com "resize" ativado. Nesse caso, estamos mudando o padrão do resize para que seja apenas possível redimensionar na vertical*/
+}
+
+.input-block, .textarea-block{
+    position: relative; /*Nesse caso, é necessário por este elemento em position relative, para que os elementos em position absolute fiquem em posição absoluta dentro dele*/
+}
+.input-block:focus-within::after,  .textarea-block:focus-within::after{
+    content:"";
+    width: calc(100% - 3.2rem); /* "calc" é usado para fazer cálculos no css. Nesse caso, para definir a largura total, estamos pegando 100% da largura total do nosso conteúdo e subtraindo 3.2rem*/
+    height: 2px;
+    background: var(--color-primary-light);
+    position: absolute;
+    left: 1.6rem;
+    right: 1.6rem;
+    bottom: 0;
+} /*Quando clicamos em um elemento e aparece aquela outline ao redor, significa que ele está em foco. Com o comando "focus-within", o que está dentro das chaves só será aplicado quando o elemento estiver em foco. Nesse caso, está se usando o pseudo-ememento "::after" que só será executado quando o item estiver em foco.*/

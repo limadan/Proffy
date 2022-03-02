@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proffy | Sua plataforma de estudos online</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/partials/header.css"><!--refatorando o código-->
+    <link rel="stylesheet" href="/styles/partials/forms.css"><!--Refatorando o código-->
+    <link rel="stylesheet" href="/styles/partials/page-give-classes.css">
+<!--há 2 links de stylesheet, elas podem se "comunicar entre si caso estejam no mesmo documento html -->
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;
+700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"> <!--BUSCAR FONTES NO GOOGLE-->
+    <script src="/scripts/addfield.js" defer></script> <!--O atributo "defer", na tag Javascript, serve para indicar para o documento ler o script apenas quando a página for completamente renderizada-->
+</head>
+
+<body id="page-give-classes">
+    <div id = "container">
+        <header class="page-header">
+            <div class="top-bar-container">
+                <a href="/">
+                    <img src="images/images/icons/back.svg" alt="Voltar">
+                </a><!--Quando usamos "/", queremos voltar para a página inicial-->
+                <img src="images/images/logo.svg" alt="Proffy">
+            </div>
+
+            <div class="header-content">
+                <strong>Que incrível que você quer dar aulas!</strong>
+                <p>O primeiro passo é preencher esse formulário de inscrição</p>
+            </div>
+        </header> <!--Tag usada para criar uma barra inicial no html-->
+        <main>
+            <form action="give-classes" id="create-class" method="post">
+                <fieldset><!--Fazer um agrupamento de dados-->
+                    <legend>Seus Dados</legend><!--Definir o nome do agrupamento de dados-->
+                        <div class="input-block">
+                            <label for="name">Nome completo</label>
+                            <input name="name" id="name" required> <!--Todos os campos que estiverem com "required" significa que o form precisa deles para enviar para o back-end-->
+                        </div>
+
+                        <div class="input-block">
+                            <label for="avatar">Link da sua foto <small>(comece com https://)</small></label> <!--A tag "small" serve para escrever um texto pequeno-->
+                            <input name="avatar" type="url" required> <!--O "type=url" exige que você coloque links-->
+                        </div>
+
+                        <div class="input-block">
+                            <label for="whatsapp">Whatsapp<small>(somente números)</small></label>
+                            <input name="whatsapp" id="avatar" type="number" required>
+                        </div>
+
+                        <div class="textarea-block">
+                            <label for="bio">Biografia</label>
+                            <textarea name="bio" id="bio" required></textarea> <!--TODOS OS DADOS ENVIADOS PARA O BACK-END PRECISA DE NOME PARA SER ACESSADO-->
+                        </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Sobre a aula</legend>
+                    <div class="select-block">
+                        <label for="subject">Matéria</label>
+                        <select name="subject" id="subject" required>
+                            <option value="">Selecione uma opção</option>
+                            <option value="1">Artes</option>
+                            <option value="2">Biologia</option>
+                            <option value="3">Ciências</option>
+                            <option value="4">Educação física</option>
+                            <option value="5">Física</option>
+                            <option value="6">Geografia</option>
+                            <option value="7">História</option>
+                            <option value="8">Matemática</option>
+                            <option value="9">Português</option>
+                            <option value="10">Química</option>
+                        </select>
+                    </div>
+                    <div class="input-block">
+                        <label for="cost">Custo da sua hora/aula<small>(R$)</small></label>
+                        <input name="cost" type="number" required>
+                    </div>
+                </fieldset>
+
+                <fieldset id="schedule-itens">
+                    <legend>Horários disponíveis
+                        <button type="button" id="add-time">+ Novo Horário</button> <!--Informamos que o tipo do botão é button para que o HTML não confunda com submit-->
+                    </legend>
+                    <div class="schedule-item">
+                        <div class="select-block">
+                            <label for="weekday">Dia da semana</label>
+                            <select name="weekday[]" required>
+                                <option value="">Selecione uma opção</option>
+                                <option value="0">Domingo</option>
+                                <option value="1">Segunda-feira</option>
+                                <option value="3">Terça-feira</option>
+                                <option value="4">Quarta-feira</option>
+                                <option value="5">Quinta-feira</option>
+                                <option value="6">Sexta-feira</option>
+                                <option value="7">Sábado</option>
+                            </select> <!--Quando usamos "[]" no "name", estamos informando ao back-end que o name pode receber mais de um valor e, portanto, deve agrupá-lo-->
+                        </div>
+                        <div class="input-block">
+                            <label for="time_from">Das</label>
+                            <input type="time" name="time_from[]" required>
+                        </div>
+                        <div class="input-block">
+                            <label for="time_to">às</label>
+                            <input type="time" name="time_to[]" required>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <footer>
+                <p>
+                    <img src=/images/images/icons/warning.svg alt="Aviso Importante">
+                    Importante!
+                    <br>
+                    Preencha todos os dados
+                </p>
+                <button type="submit" form="create-class">Salvar cadastro</button> <!--Caso um botão type="submit" esteja fora do "form", é necessário criar um atributo form com a id do furmulário que se deseja enviar-->
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
