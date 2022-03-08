@@ -76,9 +76,7 @@ server.use(express.urlencoded({extended: true}))
 
 //rotas da aplicação
 server.set('view engine', 'ejs')
-server.listen(3000, ()=>{
-    console.log("Servidor rodando")
-})
+server.listen(process.env.PORT || 8000)
 
 server.get("/", pageLanding)
 server.get("/study", pageStudy)
